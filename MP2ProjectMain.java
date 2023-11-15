@@ -13,6 +13,7 @@ public class MP2ProjectMain {
         //adds window
         window.setVisible(true);
         window.add(gameWindow);
+        gameWindow.startGame();
         window.pack();
 
 

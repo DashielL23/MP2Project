@@ -6,14 +6,16 @@ import java.awt.*;
 public class MainGameWindow extends JPanel implements Runnable{
 
     //display settings
-    final int originalTileSize = 16;
-    final int scale = 3;
-    final int tileSize = originalTileSize * scale; // 48x48 pixels
-    final int maxScreenWidth = 16;
-    final int maxScreenHeight = 12;
-    final int screenWidth = maxScreenWidth * tileSize; // 768 px
-    final int screenHeight = maxScreenHeight * tileSize; //  576 px
+    private final int originalTileSize = 16;
+    private final int scale = 3;
+    private final int tileSize = originalTileSize * scale; // 48x48 pixels
+    private final int maxScreenWidth = 16;
+    private final int maxScreenHeight = 12;
+    private final int screenWidth = maxScreenWidth * tileSize; // 768 px
+    private final int screenHeight = maxScreenHeight * tileSize; //  576 px
 
+    private int boxXValue = 100;
+    private int boxYValue = 100;
     private Thread gameThread;
 
     //Constructor for game window
@@ -33,10 +35,17 @@ public class MainGameWindow extends JPanel implements Runnable{
         //runs while object exists
         while(gameThread != null){
             System.out.println("test");
-            updateGamestuff();
+            Update();
             //repaint (update screen)
             repaint();
             //delay for game loop
+            
+            try{
+                Thread.sleep(16); //60 FPS me thinks
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            
         }
     }
 
@@ -48,14 +57,17 @@ public class MainGameWindow extends JPanel implements Runnable{
 
         //paints the square
         graphics2d.setColor(Color.RED);
-        graphics2d.fillRect(100,100, tileSize, tileSize);
+        graphics2d.fillRect(boxXValue, boxYValue, tileSize, tileSize);
 
         //prevents a lot of memory from being wasted lol
         graphics2d.dispose();
     }
 
-    public void updateGamestuff(){
-
+    public void Update(){
+        boxXValue+=5;
+        if(boxXValue + tileSize > screenWidth){
+            boxXValue = screenWidth - tileSize;
+        }
     }
 }
 

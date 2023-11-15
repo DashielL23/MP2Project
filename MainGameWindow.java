@@ -16,6 +16,33 @@ public class MainGameWindow extends JPanel implements Runnable{
 
     private int boxXValue = 100;
     private int boxYValue = 100;
+    private int xVelocity = 5;
+    private double yVelocity = 5;
+
+    private boolean movingRight = true;
+    private boolean movingDown = true;
+    private boolean updateDetectionXAxis(boolean a){
+        if(boxXValue + tileSize > screenWidth){
+            a = false;
+        }
+        else if((boxXValue-50) + tileSize < 0){
+            a = true;
+        }
+        movingRight = a;
+        return a;
+    }
+    private boolean updateDetectionYAxis(boolean a){
+        if(boxYValue + tileSize > screenHeight){
+            a = false;
+        }
+        if((boxYValue-50) + tileSize < 0){
+            a = true;
+            
+        }
+        movingDown = a;
+        return a;
+    }
+
     private Thread gameThread;
 
     //Constructor for game window
@@ -34,8 +61,7 @@ public class MainGameWindow extends JPanel implements Runnable{
     public void run(){
         //runs while object exists
         while(gameThread != null){
-            System.out.println("test");
-            Update();
+            updateGameStuff();
             //repaint (update screen)
             repaint();
             //delay for game loop
@@ -62,14 +88,17 @@ public class MainGameWindow extends JPanel implements Runnable{
         //prevents a lot of memory from being wasted lol
         graphics2d.dispose();
     }
+    public void updateGameStuff(){
+        updateDetectionXAxis(movingRight);
+        updateDetectionYAxis(movingDown);
+        //X axis movement
+        if(movingRight) boxXValue+= xVelocity;
+        else if(!movingRight) boxXValue-= xVelocity;
+        //Y axis movement
+        if(movingDown) boxYValue+= yVelocity;
+        if(!movingDown) boxYValue-= yVelocity;
 
-    public void Update(){
-        boxXValue+=5;
-        if(boxXValue + tileSize > screenWidth){
-            boxXValue = screenWidth - tileSize;
-        }
+
+
     }
 }
-
-
-

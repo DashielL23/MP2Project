@@ -1,8 +1,12 @@
 import javax.swing.*;
-public class MP2ProjectMain {
+
+public class MP2ProjectMain{
+
     public static void main(String[] args){
+
         JFrame window = new JFrame();
-        MainGameWindow gameWindow = new MainGameWindow();
+        MouseActions mouseAction = new MouseActions();
+        MainGameWindow gameWindow = new MainGameWindow(mouseAction);        
 
         //defining stuff for window
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,7 +19,5 @@ public class MP2ProjectMain {
         window.add(gameWindow);
         gameWindow.startGame();
         window.pack();
-
-
     }
 }

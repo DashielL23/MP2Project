@@ -1,6 +1,7 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
+import java.awt.Rectangle;
 public class MouseActions implements MouseListener, MouseMotionListener {
     private int mouseX, mouseY;
 
@@ -16,6 +17,10 @@ public class MouseActions implements MouseListener, MouseMotionListener {
         System.out.println("Dragged Mouse");
     }
 
+    public Rectangle getMouseBounds(){
+        return new Rectangle(mouseX,mouseY,1,1);
+    }
+    
     public void mouseExited(MouseEvent e){
 
     }

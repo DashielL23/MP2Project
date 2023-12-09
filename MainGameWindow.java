@@ -25,7 +25,7 @@ public class MainGameWindow extends JPanel implements Runnable{
     private Block blockA = new Block(0, 400, 768, 174, Color.BLUE, this);
     private Block blockB = new Block(668, 0, 100, 576, Color.RED, this);
     private Block blockC = new Block(0, 0, 100, 576, Color.RED, this);
-    private MovableBlock movableBlockA = new MovableBlock(100, 500, 100, 50, Color.GREEN, this, true, false);
+    private MovableBlock movableBlockA = new MovableBlock(100, 500, 600, 100, Color.GREEN, this, true, false);
 
     private Block[] blocks = {blockA,blockB,blockC};
     private MovableBlock[] movableBlocks = {movableBlockA};
@@ -71,8 +71,8 @@ public class MainGameWindow extends JPanel implements Runnable{
         blockA.paintComponent(player);
         blockB.paintComponent(player);
         blockC.paintComponent(player);
-        this.player.paintComponent(player);
         movableBlockA.paintComponent(player);
+        this.player.paintComponent(player);
         player2D.dispose();
     }
 
@@ -103,7 +103,24 @@ public class MainGameWindow extends JPanel implements Runnable{
     }
     public void updateMovableBlock(){
         for(MovableBlock i: movableBlocks){
-            if(mouseAction.getMouseBounds().intersects(i.getBounds())) i.moveBlockY(-5);
+            if(mouseAction.getMouseBounds().intersects(i.getBounds()) && mouseAction.getDragging()) i.moveBlockY(mouseAction.getMouseY()-(i.getWidth()/2));
+            if(player.getPlayerVerticalBounds().intersects(i.getBounds())){
+                if(player.getPlayerYVel() <= 3){
+                    System.out.println(player.getPlayerYVel());
+                    player.playerSetY(i.getY()-51);
+                    player.noGravity();
+                    player.playerSetYVel(0);
+                }
+                else{
+                    System.out.println(player.getPlayerYVel());
+                    player.playerSetYVel(-(int)(player.getPlayerYVel() * .5));
+                    player.playerSetY(i.getY()-51);
+                    player.resetPlayerGravity();
+                }
+            }
+            if(player.getPlayerHorizontalBounds().intersects(i.getBounds())){
+                player.playerSetXVel(-player.getPlayerXVel());
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
+package GameInfo;
 import javax.swing.*;
 
 public class MP2ProjectMain{
     public static void main(String[] args){
         
+
         JFrame window = new JFrame();
         MouseActions mouseAction = new MouseActions();
         MainGameWindow gameWindow = new MainGameWindow(mouseAction);        

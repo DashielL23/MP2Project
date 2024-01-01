@@ -1,3 +1,5 @@
+package GameInfo;
+
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -42,6 +44,9 @@ public class Player{
     public void playerSetY(int x){
         playerY = x;
     }
+    public void playerSetX(int x){
+        playerX = x;
+    }
     public void noGravity(){
         gravity = 0;
     }
@@ -63,7 +68,9 @@ public class Player{
 
         return new Rectangle(boxX,boxY,boxLength,boxWidth); // returns invisible rectangle the size of the block to detect collision
     }
-    
+    public Rectangle getPlayerHeadForMovableBlocks(){
+        return new Rectangle(playerX,(int)playerY,50,10);
+    }
     public void paintComponent(Graphics g){
         Graphics2D player2D = (Graphics2D)g; 
         player2D.setColor(Color.RED);

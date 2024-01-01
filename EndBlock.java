@@ -5,21 +5,19 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import java.awt.Rectangle;
 
-public class Block extends JPanel{
+public class EndBlock extends JPanel{
     private int blockX = 0;
     private int blockY;
     private int blockLength = 1;
     private int blockWidth = 1;
-
     private Color blockColor = Color.RED;
 
 
-    public Block(int blockXParam, int blockYParam, int blockLengthParam, int blockWidthParam, Color blockColorParam){
+    public EndBlock(int blockXParam, int blockYParam, int blockLengthParam, int blockWidthParam){
         blockX = blockXParam;
         blockY = blockYParam;
         blockLength = blockLengthParam;
         blockWidth = blockWidthParam;
-        blockColor = blockColorParam;
     }
 
     public int getY(){return blockY;}

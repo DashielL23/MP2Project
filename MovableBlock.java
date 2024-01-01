@@ -1,7 +1,7 @@
+package GameInfo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JPanel;
 import java.awt.Rectangle;
 
 public class MovableBlock {
@@ -16,14 +16,14 @@ public class MovableBlock {
     public void moveBlockY(int x){
         blockY = x;
     }
-    public int getWidth(){
-        return blockWidth;
-    }
-    public int getY(){
-        return blockY;
-    }
+    public int getY(){return blockY;}
+    public int getX(){return blockX;}
+    public int getLength(){return blockLength;}
+    public int getWidth(){return blockWidth;}
+    public Color getColor(){return blockColor;}
+
     private Color blockColor;
-    public MovableBlock(int blockXParam, int blockYParam, int blockLengthParam, int blockWidthParam, Color blockColorParam, JPanel blockPanelParam, boolean canMoveVertical, boolean canMoveHorizontal){
+    public MovableBlock(int blockXParam, int blockYParam, int blockLengthParam, int blockWidthParam, Color blockColorParam, boolean canMoveVertical, boolean canMoveHorizontal){
         blockX = blockXParam;
         blockY = blockYParam;
         blockLength = blockLengthParam;

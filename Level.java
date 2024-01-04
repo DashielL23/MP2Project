@@ -20,11 +20,9 @@ public class Level{
             endBlocks.add(new EndBlock(708,350,50,50));
         }
         if(levelNum== 2){
-            blocks.add(new Block(0,400,368,174, Color.BLUE));
-            blocks.add(new Block(508,400,260,174, Color.BLUE));
+            blocks.add(new Block(0,400,468,174, Color.BLUE));
             blocks.add(new Block(0,0,100,576, new Color(82,3,3)));
             blocks.add(new Block(668,0,100,576, new Color(82,3,3)));
-            movableBlocks.add(new MovableBlock(200, 350, 100, 150, Color.GREEN, true, false));
         }
         this.playerX = playerX;
         this.playerY = playerY;

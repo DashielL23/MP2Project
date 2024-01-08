@@ -10,11 +10,11 @@ import java.awt.event.ActionEvent;
 
 public class GameOverScreen extends JPanel {
 
-    MainGameWindow player;
-    JLabel deathLabel = new JLabel("You died!");
-    JButton toMenu = new JButton("Menu");
-    JButton restartLevel = new JButton("Restart");
-    JFrameLayout jFrameLayout;
+    private MainGameWindow player;
+    private JLabel deathLabel = new JLabel("You died!");
+    private JButton toMenu = new JButton("Menu");
+    private JButton restartLevel = new JButton("Restart");
+    private JFrameLayout jFrameLayout;
 
     public GameOverScreen(MainGameWindow player, JFrameLayout jFrameLayout) {
         setLayout(null); 

@@ -50,7 +50,9 @@ public class Player{
     public void noGravity(){
         gravity = 0;
     }
-
+    public void setXVel(int a){
+        xVel = a;
+    }
     public Rectangle getPlayerHorizontalBounds(){ // For collisions
         int boxX = playerX;
         int boxY = (int)playerY+5;

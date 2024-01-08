@@ -22,16 +22,17 @@ public class MainGameWindow extends JPanel implements Runnable{
     private final int maxScreenHeight = 12;
     private final int screenWidth = maxScreenWidth * tileSize; // 768 px
     private final int screenHeight = maxScreenHeight * tileSize; //  576 px
-    private JFrameLayout panels = new JFrameLayout();
+    private JFrameLayout panels;
     private Level currentLevel;
     private Player player = new Player();
     private ArrayList<Level> levels = new ArrayList<>();
+    private MenuScreen menuScreen;
     private int levelCounter = 0;
     private boolean isDead = false;
-    private boolean toMenu = false;
+    private boolean inMenu = false;
     //levels
     //Constructor for game window
-    public MainGameWindow(MouseActions mouseAction, JFrameLayout jFrameLayout){
+    public MainGameWindow(MouseActions mouseAction, JFrameLayout jFrameLayout, MenuScreen a){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
@@ -39,6 +40,7 @@ public class MainGameWindow extends JPanel implements Runnable{
         this.addMouseMotionListener(mouseAction);
         this.mouseAction = mouseAction;
         this.panels = jFrameLayout;
+        menuScreen = a;
     }
     //initializes thread
     public void startGame(){
@@ -47,7 +49,7 @@ public class MainGameWindow extends JPanel implements Runnable{
     }
     //add levels
     public void addLevels(){
-        levels.add(new Level(1, 110, 350, player));
+        levels.add(new Level(1, 110, 400, player));
         levels.add(new Level(2, 110, 350, player));
         currentLevel = levels.get(0);
     }
@@ -56,7 +58,8 @@ public class MainGameWindow extends JPanel implements Runnable{
     public void run(){
         addLevels();
         //runs while object exists
-        while(gameThread != null && !toMenu){
+        while(!inMenu){
+            System.out.println("test1");
             updateGameStuff();
             //repaint (update screen)
             repaint();
@@ -149,16 +152,20 @@ public class MainGameWindow extends JPanel implements Runnable{
         }
     }
     public void resetLevel(){
-        currentLevel = levels.get(levelCounter);
         player.playerSetX(currentLevel.getPlayerX());
         player.playerSetY(currentLevel.getPlayerY()); 
         player.playerSetYVel(5);
         player.resetPlayerGravity();
+        currentLevel = levels.get(levelCounter);
+        levels.set(levelCounter, new Level(levelCounter+1, player.getPlayerX(), (int)player.getPlayerY(), player));
         panels.getCardLayout().show(panels.getCardPanel(), "Game");
     }
     public void toMenu(){
-        toMenu = true;
+        inMenu = true;
         panels.getCardLayout().show(panels.getCardPanel(),"Menu");
+    }
+    public void setInMenu(boolean a){
+        inMenu = a;
     }
 
 }

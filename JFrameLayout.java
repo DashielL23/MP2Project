@@ -17,9 +17,10 @@ public class JFrameLayout extends JFrame{
     public void layout(){
         JFrame window = new JFrame();
         MouseActions mouseAction = new MouseActions();
-        MainGameWindow gameWindow = new MainGameWindow(mouseAction, this);       
+        MenuScreen menuWindow = new MenuScreen(this);
+        MainGameWindow gameWindow = new MainGameWindow(mouseAction, this, menuWindow);     
+        menuWindow.setGameWindow(gameWindow);  
         GameOverScreen gameOverWindow = new GameOverScreen(gameWindow, this);
-        MenuScreen menuWindow = new MenuScreen();
         //handling the window switching for death, menu, etc
         cardPanel.setLayout(cardLayout);
         cardPanel.add(gameWindow,"Game");
@@ -36,6 +37,6 @@ public class JFrameLayout extends JFrame{
         window.setVisible(true);
         window.setSize(768,576);
         cardLayout.show(cardPanel,"Menu"); 
-        menuWindow.startAnimation();
+        menuWindow.restartAnimation();
     }
 }

@@ -15,14 +15,16 @@ public class Level{
         if(levelNum==1){
             blocks.add(new Block(0, 400, 768, 174, Color.BLUE));
             blocks.add(new Block(0, 0, 100, 576, Color.RED));
-            blocks.add(new Block(718, 0, 50, 576, Color.RED));
+            blocks.add(new Block(668, 0, 100, 576, Color.RED));
             movableBlocks.add(new MovableBlock(200, 300, 100, 200, Color.GREEN, true, false));
-            endBlocks.add(new EndBlock(708,350,50,50));
+            endBlocks.add(new EndBlock(667,300,100,100));
         }
         if(levelNum== 2){
             blocks.add(new Block(0,400,468,174, Color.BLUE));
             blocks.add(new Block(0,0,100,576, new Color(82,3,3)));
             blocks.add(new Block(668,0,100,576, new Color(82,3,3)));
+            movableBlocks.add(new MovableBlock(468,50,300,100,Color.GREEN, true, false));
+            endBlocks.add(new EndBlock(667,300,50,100));
         }
         this.playerX = playerX;
         this.playerY = playerY;

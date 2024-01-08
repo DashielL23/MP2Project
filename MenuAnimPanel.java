@@ -1,11 +1,8 @@
 package GameInfo;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -16,44 +13,33 @@ public class MenuAnimPanel extends JPanel implements Runnable {
     private Block[] blocks = {bottomBlock,leftBlock,rightBlock};
     private Player player = new Player();
 
-    private JButton helpButton = new JButton("HELP");
-    private JButton startButton = new JButton("START");
-    private JLabel title = new JLabel("BLOCKED");
+
     private boolean inMenu = true;
     private Thread menuThread = new Thread();
 
     public MenuAnimPanel() {
-        setLayout(null);
-        this.setBackground(Color.BLACK);
-        initPanel();
+        setBackground(Color.BLACK);
+        initializePanel();
         setVisible(true);
     }
 
-    public void initPanel(){
+    public void initializePanel(){
         player.playerSetX(101);
         player.playerSetY(399);
-
-        title.setFont(new Font("Arial", Font.BOLD, 60));
-        title.setBounds(324, 100, 120, 60);
-        startButton.setFont(new Font("Arial", Font.BOLD, 30));
-        startButton.setBounds(344,350,80,50);
-        helpButton.setFont(new Font("Arial", Font.BOLD, 30));
-        helpButton.setBounds(344,250,80,50);
-        setLayout(null);
-        setBackground(null);
-        setOpaque(true);
-        setBounds(0,0, getWidth(), getHeight());
+        setBounds(0,0, 768, 576);
     }
 
-    public void startAnimation(){
+
+    public void restartAnimation(){
+        inMenu = true;
         menuThread = new Thread(this);
         menuThread.start();
     }
 
+
     @Override
     public void run(){
-        
-        while(menuThread != null && inMenu){
+        while(inMenu){
             updateAnim();
             repaint();
             try{
@@ -73,13 +59,12 @@ public class MenuAnimPanel extends JPanel implements Runnable {
         this.player.paintComponent(g2d);
     }
     public void updateAnim(){
+        System.out.println("test");
         player.playerXIncrement();
         player.playerYIncrement();
         updateCollision();
     }
-    public void stopAnim(){
-        inMenu = false;
-    }
+    
 
     public void updateCollision(){
         for(Block i : blocks){
